@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int READ_TIMEOUT = 15000;
 
     private RecyclerView filmsView;
-    private Adapter filmsAdapter;
+    private Adapter AdapterFilms;
 
 
     @Override
@@ -128,11 +127,13 @@ public class MainActivity extends AppCompatActivity {
             List<DataFilms> data = new ArrayList<>(  );
 
             try {
+
                 JSONArray jsonArray = new JSONArray( result );
 
-                for (int i=0; i<jsonArray(); i++) () {
+                for (int i=0; i < jsonArray.length(); i++) {
 
                     JSONObject json_data = jsonArray.getJSONObject( i );
+
                     DataFilms filmsData = new DataFilms();
                     filmsData.filmsTitle = json_data.getString( "title" );
                     filmsData.filmsImage = json_data.getString( "images" );
@@ -140,7 +141,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 filmsView = findViewById( R.id.filmsView );
-                filmsAdapter = new Adapter( MainActivity.this, data ) {
+                filmsView.setAdapter( (RecyclerView.Adapter) AdapterFilms );
+                filmsView.setLayoutManager( new LinearLayoutManager( MainActivity.this ));
+                AdapterFilms = new Adapter() {
+
                     @Override
                     public void registerDataSetObserver(DataSetObserver dataSetObserver) {
 
@@ -191,9 +195,6 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 };
-                filmsView.setAdapter(AdapterFilms);
-                filmsView.setLayoutManager( new LinearLayoutManager( MainActivity.this ));
-
 
             } catch (JSONException e) {
                 e.printStackTrace();

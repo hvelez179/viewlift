@@ -18,19 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="film name"
         android:id="@+id/textFilmName"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/ivFilms"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textSize"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@id/textFilmName"
-        android:layout_toRightOf="@id/ivFilms"
-        android:layout_toEndOf="@id/ivFilms"
-        android:textColor="#666"/>
+        android:layout_marginStart="0dp"
+        android:layout_below="@id/ivFilms"/>
 
 </RelativeLayout>
